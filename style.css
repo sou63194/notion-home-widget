@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-1: #0d0f1e;
+  --bg-2: #1a1d35;
+  --accent-1: #7c9dff;
+  --accent-2: #ff9d7c;
+  --transition: 1.2s ease;
+}
+
+body {
+  font-family: "Zen Kaku Gothic New", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  color: #f5f5fa;
+  padding: 28px 20px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition: background var(--transition);
+}
+
+.glow {
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 600px;
+  max-height: 600px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, var(--accent-1) 0%, transparent 70%);
+  opacity: 0.18;
+  filter: blur(40px);
+  pointer-events: none;
+  transition: background var(--transition), opacity var(--transition);
+  z-index: 0;
+}
+
+.dashboard {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* hero / clock */
+.hero {
+  text-align: center;
+  padding: 32px 20px 36px;
+  animation: fadeIn 0.6s ease both;
+}
+
+.greeting {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--accent-1);
+  margin-bottom: 6px;
+}
+
+.date {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+.clock {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 64px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+/* grid of secondary cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.6s ease both;
+}
+
+.card-label {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.55;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* weather */
+.weather-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.weather-emoji {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.weather-temp {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.weather-desc {
+  margin-top: 8px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* sun */
+.sun-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sun-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex: 1;
+}
+
+.sun-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.sun-icon {
+  font-size: 22px;
+}
+
+.sun-time {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.sun-label {
+  font-size: 11px;
+  opacity: 0.55;
+}
+
+/* fun quote */
+.fun-card {
+  grid-column: 1 / -1;
+}
+
+.quote {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* progress */
+.progress-card {
+  padding: 18px 20px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.progress-header .card-label {
+  margin-bottom: 0;
+}
+
+.progress-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  border-radius: 999px;
+  transition: width 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 420px) {
+  .clock {
+    font-size: 48px;
+  }
+}

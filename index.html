@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Widget</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="glow" id="glow"></div>
+
+<div class="dashboard">
+
+  <header class="hero">
+    <div class="greeting" id="greeting">こんにちは</div>
+    <div class="date" id="date"></div>
+    <div class="clock" id="clock">--:--:--</div>
+  </header>
+
+  <div class="grid">
+
+    <section class="card weather-card">
+      <div class="card-label">名古屋の天気</div>
+      <div class="weather-main">
+        <span class="weather-emoji" id="weather-emoji">🌤️</span>
+        <span class="weather-temp" id="weather-temp">--°</span>
+      </div>
+      <div class="weather-desc" id="weather-desc">読み込み中...</div>
+    </section>
+
+    <section class="card sun-card">
+      <div class="card-label">太陽の時間</div>
+      <div class="sun-row">
+        <div class="sun-item">
+          <span class="sun-icon">🌅</span>
+          <span class="sun-time" id="sunrise">--:--</span>
+          <span class="sun-label">日の出</span>
+        </div>
+        <div class="sun-divider"></div>
+        <div class="sun-item">
+          <span class="sun-icon">🌇</span>
+          <span class="sun-time" id="sunset">--:--</span>
+          <span class="sun-label">日の入り</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card fun-card">
+      <div class="card-label">今日の一言</div>
+      <div class="quote" id="quote">読み込み中...</div>
+    </section>
+
+  </div>
+
+  <section class="card progress-card">
+    <div class="progress-header">
+      <span class="card-label" id="year-progress-label">今年の進捗</span>
+      <span class="progress-text" id="year-progress-text">--%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="year-progress-fill"></div>
+    </div>
+  </section>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
