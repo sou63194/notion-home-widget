@@ -30,23 +30,23 @@ const WEATHER_CODE_MAP = {
 };
 
 const QUOTES = [
-  "今日という日は、残りの人生の最初の日。",
-  "小さな一歩が、大きな変化を生む。",
-  "焦らず、着実に。",
-  "できることから、一つずつ。",
-  "今日の積み重ねが、未来をつくる。",
-  "休むことも、前に進むうちのひとつ。",
-  "完璧じゃなくていい、続けることが大事。",
-  "今この瞬間を大切に。",
+  "焚き火を眺めるように、心を静める時間を。",
+  "木々は焦らず、それでも確かに育っていく。",
+  "星空の下では、小さな悩みも少し軽くなる。",
+  "風の音に耳を澄ませば、今この瞬間に還れる。",
+  "薪がはぜる音は、今日一日の合図。",
+  "森の静けさが、明日への力をくれる。",
+  "焚き火の炎のように、静かに、でも確かに燃え続ける。",
+  "夜空を見上げる余裕を、今日も忘れずに。",
 ];
 
 const THEMES = [
-  // [開始時, 挨拶, bg-1, bg-2, accent-1, accent-2]
-  { from: 5, to: 10, greeting: "おはようございます", bg1: "#2a2338", bg2: "#4a3450", a1: "#ffb37c", a2: "#ff7ca0" },
-  { from: 10, to: 16, greeting: "こんにちは", bg1: "#0d1830", bg2: "#1a2c4d", a1: "#7cc7ff", a2: "#7c9dff" },
-  { from: 16, to: 19, greeting: "こんにちは", bg1: "#301a2a", bg2: "#4d2438", a1: "#ff9d7c", a2: "#ffce7c" },
-  { from: 19, to: 24, greeting: "こんばんは", bg1: "#0d0f1e", bg2: "#1a1d35", a1: "#7c9dff", a2: "#a06bff" },
-  { from: 0, to: 5, greeting: "こんばんは", bg1: "#0a0a16", bg2: "#141428", a1: "#5c6bff", a2: "#7c4bff" },
+  // [開始時, 挨拶, bg-1, bg-2, accent-1, accent-2, stars, fire]
+  { from: 5, to: 10, greeting: "おはようございます", bg1: "#16241b", bg2: "#2c3f2a", a1: "#ffb37c", a2: "#8fd19e", stars: false, fire: false },
+  { from: 10, to: 16, greeting: "こんにちは", bg1: "#12251c", bg2: "#1f3d2c", a1: "#8fd19e", a2: "#e0c97c", stars: false, fire: false },
+  { from: 16, to: 19, greeting: "こんにちは", bg1: "#2b1710", bg2: "#4a2916", a1: "#ff9d4d", a2: "#ffcf7c", stars: false, fire: true },
+  { from: 19, to: 24, greeting: "こんばんは", bg1: "#070b14", bg2: "#101a2c", a1: "#ffcf7c", a2: "#8fb4ff", stars: true, fire: true },
+  { from: 0, to: 5, greeting: "こんばんは", bg1: "#04060d", bg2: "#0a0f1e", a1: "#6b8fff", a2: "#a685ff", stars: true, fire: false },
 ];
 
 function currentTheme(hour) {
@@ -64,6 +64,26 @@ function updateGreetingAndTheme() {
   root.setProperty("--bg-2", theme.bg2);
   root.setProperty("--accent-1", theme.a1);
   root.setProperty("--accent-2", theme.a2);
+
+  document.body.classList.toggle("has-stars", theme.stars);
+  document.body.classList.toggle("has-fire", theme.fire);
+}
+
+function generateStars(count) {
+  const container = document.getElementById("stars");
+  if (!container) return;
+  for (let i = 0; i < count; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.top = `${Math.random() * 70}%`;
+    star.style.left = `${Math.random() * 100}%`;
+    const size = Math.random() < 0.15 ? 3 : 2;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.animationDelay = `${Math.random() * 4}s`;
+    star.style.animationDuration = `${2.5 + Math.random() * 2.5}s`;
+    container.appendChild(star);
+  }
 }
 
 function updateClock() {
@@ -121,6 +141,7 @@ function updateYearProgress() {
     `${now.getFullYear()}年 ${percent.toFixed(1)}% 経過`;
 }
 
+generateStars(70);
 updateGreetingAndTheme();
 updateClock();
 updateQuote();

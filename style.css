@@ -40,6 +40,79 @@ body {
   z-index: 0;
 }
 
+/* starry sky */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+  z-index: 0;
+}
+
+body.has-stars .stars {
+  opacity: 1;
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 1; }
+}
+
+/* campfire glow */
+.campfire-glow {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  width: 340px;
+  height: 220px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at bottom, rgba(255, 157, 77, 0.55) 0%, transparent 70%);
+  filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.8s ease;
+  animation: flicker 3.4s ease-in-out infinite;
+  z-index: 0;
+}
+
+body.has-fire .campfire-glow {
+  opacity: 1;
+}
+
+@keyframes flicker {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+  25% { transform: translateX(-50%) scale(1.06); opacity: 0.9; }
+  50% { transform: translateX(-50%) scale(0.96); opacity: 1; }
+  75% { transform: translateX(-50%) scale(1.03); opacity: 0.85; }
+}
+
+/* tree line silhouette */
+.treeline {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: #05070a;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+  clip-path: polygon(
+    0% 100%, 0% 55%, 4% 100%, 6% 30%, 10% 100%, 13% 50%, 17% 100%, 20% 25%,
+    24% 100%, 27% 60%, 31% 100%, 34% 40%, 38% 100%, 41% 65%, 45% 100%, 48% 20%,
+    52% 100%, 55% 55%, 59% 100%, 62% 35%, 66% 100%, 69% 50%, 73% 100%, 76% 28%,
+    80% 100%, 83% 60%, 87% 100%, 90% 40%, 94% 100%, 97% 55%, 100% 100%
+  );
+}
+
 .dashboard {
   position: relative;
   z-index: 1;
